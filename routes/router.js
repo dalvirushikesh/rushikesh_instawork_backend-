@@ -48,6 +48,23 @@ con.get("/v1/account", async (req, res) => {
       }
       });
   
-  
+  //delete team member data with sequalize 
+con.delete("/v1/account/:id", async (req, res) => {
+    try{
+    const team_member = await User.destroy({
+      where: {
+        id: req.params.id,
+      },
+      
+    });
+    res.sendStatus(204);
+      
+      }
+      catch(err) {
+        
+          console.log(err);
+          return res.status(400).send("Bad Request");
+      }
+      });
 
   module.exports = con;
