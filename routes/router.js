@@ -7,7 +7,6 @@ const {User} = require("../models");
 
  //api endpoint to check app health
 con.get("/healthz", (req, res) => {
-   
     res.status(200).send();
   });
 
@@ -33,5 +32,22 @@ con.get("/healthz", (req, res) => {
         }
   });
 
+
+//get all team members end point with sequelize
+con.get("/v1/account", async (req, res) => {
+    try{
+     const team_members = await User.findAll({
+     
+    });
+              return res.status(200).send(team_members);
+}
+      catch(err) {
+        
+          console.log(err);
+          return res.status(400).send("Bad Request");
+      }
+      });
+  
+  
 
   module.exports = con;

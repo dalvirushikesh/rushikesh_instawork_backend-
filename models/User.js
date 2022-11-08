@@ -1,3 +1,5 @@
+const { validate } = require("uuid");
+
 module.exports = (sequelize , DataTypes) =>{
     const User = sequelize.define("User",{
     //attributes for the project
@@ -23,9 +25,13 @@ module.exports = (sequelize , DataTypes) =>{
             isEmail: true
         }
     },
+    
     phone_number: {
         type : DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            isNumeric: true
+        }
     },
     role: {
         type : DataTypes.STRING,
