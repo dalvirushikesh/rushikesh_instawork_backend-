@@ -19,3 +19,16 @@ Now you have your application up and running on port 3000
  - check application health point using following curl command 
 
  - curl -v http://localhost:3000/healthz
+
+# Step 5
+- To Create a team member use following command
+- curl -X POST -H "Content-Type: application/json" \
+    -d '{                                                       
+    "first_name":"Bff",             
+    "last_name":"Bff",
+    "email":"Bff@gmail.com",
+    "phone_number":"36555434343",
+    "role":"admin"
+ }' \
+    http://localhost:3000/v1/account
+  
