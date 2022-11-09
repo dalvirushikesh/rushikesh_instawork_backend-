@@ -64,18 +64,34 @@ con.put("/v1/account/:id", async (req, res) => {
       return res.status(400).send("Bad Request"); //400 is the status code for bad request
     }
   }
-            const Accu = await User.update({      //update the user
+  const userr = await User.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+  if(userr)
+{            const Accu = await User.update({      //update the user
               first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                email: req.body.email,
-                phone_number: req.body.phone_number,
-                role: req.body.role},
+              last_name: req.body.last_name,
+              email: req.body.email,
+              phone_number: req.body.phone_number,
+              role: req.body.role
+              },
               {
                 where: {
                   id:req.params.id, 
                 },
             });
-              return res.status(200).send(dbAcc); //200 is the status code for ok
+            const updateduser = await User.findOne({
+              where: {
+                id: req.params.id,
+              },
+            });
+              return res.status(200).send(updateduser); //200 is the status code for ok
+          }
+              else{
+                return res.status(404).send("Not Found"); //404 is the status code for not found
+              }
     }
     catch(err)  {
         console.log(err);
@@ -83,6 +99,8 @@ con.put("/v1/account/:id", async (req, res) => {
       }
     });
 
+
+    
   //delete team member data with sequalize 
 con.delete("/v1/account/:id", async (req, res) => {
     try{
@@ -100,7 +118,7 @@ con.delete("/v1/account/:id", async (req, res) => {
     res.sendStatus(204);}
     else
     {
-      res.status(404).send("Not Found"); //404 is the status code for not found
+    res.status(404).send("Not Found"); //404 is the status code for not found
     }}
     catch(err) {
         console.log(err);
