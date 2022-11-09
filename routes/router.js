@@ -5,8 +5,6 @@ const {User} = require("../models");
  User.sequelize.sync();
 
 
-
-
  //api endpoint to check app health
 con.get("/healthz", (req, res) => {
     res.status(200).send();
@@ -64,7 +62,7 @@ con.put("/v1/account/:id", async (req, res) => {
       return res.status(400).send("Bad Request"); //400 is the status code for bad request
     }
   }
-  const userr = await User.findOne({
+  const userr = await User.findOne({ // find the user
     where: {
       id: req.params.id,
     },
@@ -82,7 +80,7 @@ con.put("/v1/account/:id", async (req, res) => {
                   id:req.params.id, 
                 },
             });
-            const updateduser = await User.findOne({
+            const updateduser = await User.findOne({ //find the updated user
               where: {
                 id: req.params.id,
               },
@@ -104,7 +102,7 @@ con.put("/v1/account/:id", async (req, res) => {
   //delete team member data with sequalize 
 con.delete("/v1/account/:id", async (req, res) => {
     try{
-      const userr = await User.findOne({
+      const userr = await User.findOne({ //find the user
         where: {
           id: req.params.id,
         },
@@ -115,14 +113,14 @@ con.delete("/v1/account/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-    res.sendStatus(204);}
+    res.sendStatus(204);} //204 is the status code for no content
     else
     {
     res.status(404).send("Not Found"); //404 is the status code for not found
     }}
     catch(err) {
         console.log(err);
-        return res.status(400).send("Bad Request");
+        return res.status(400).send("Bad Request"); //400 is the status code for bad request
       }
       });
 
