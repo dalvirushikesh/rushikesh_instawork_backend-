@@ -6,13 +6,13 @@
 - git clone git@github.com:dalvirushikesh/rushikesh_instawork_backend-.git
 
 # Step 2 
-- change directory to the project directory using
-cd rushikesh_instawork_backend- 
+- change directory to the project directory using following command
+- cd rushikesh_instawork_backend- 
 - now to install all npm packages run following command 
-npm install 
+- npm install 
 # Step 3
 - To start the application use following command 
-node server.js
+- node server.js
 
 Now you have your application up and running on port 3000
 # Step 4
